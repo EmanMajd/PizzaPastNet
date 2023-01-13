@@ -2,5 +2,5 @@
 
 public enum Dranks
 {
-    water, limonade , cocacola , koffie , thee
+    water, limonade , cocacola , koffie , thee , serveNiet
 }

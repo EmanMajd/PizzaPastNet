@@ -19,24 +19,13 @@ namespace PastaPizzaNet
         }
 
         public Desserten Naam { get => naam; set => naam = value; }
-        public decimal Prijs { get => prijs;set => prijs = BerekenBedrag(); }
+        public decimal Prijs { get => prijs;set => prijs = value; }
 
         public decimal BerekenBedrag()
         {
 
-            if (this.Naam == Desserten.Tiramisu) {
-                return 3;
-            } else if (this.Naam == Desserten.Ijs){
-                return 3;
-            }else if(this.Naam == Desserten.Cake)
-            {
-                return 2;
-            }
-            else
-            {
                 return this.prijs;
-            }
-       
+           
         }
 
         public override string ToString()

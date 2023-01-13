@@ -8,12 +8,15 @@ namespace PastaPizzaNet
 {
     public class Pizza : Gerecht
     {
+        
         public List<string> Onderdelen { get; set; }
 
         public Pizza(string naam, decimal prijs, List<string> onderdelen): base(naam, prijs) 
         {
             this.Onderdelen= onderdelen;
+            
         }
+        
 
         public string alleOnderdelen(List<string> onderdelen)
         {
@@ -33,8 +36,8 @@ namespace PastaPizzaNet
         }
         public override string ToString()
         {
-            return $"Gerecht : Pizza {this.Naam} " +
-                   $" (prijs {this.Prijs} EUR )" +
+            return $"Gerecht : Pizza {base.Naam} " +
+                   $" (prijs {base.Prijs} EUR )" +
                    $" Onderdelen : {alleOnderdelen(this.Onderdelen)} ";
         }
 
