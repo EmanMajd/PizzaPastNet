@@ -9,32 +9,59 @@ namespace PastaPizzaNet
     public class Bestelling : IBedrag
     {
         public Klant klant;
-        public Drank drank;
-        public Dessert dessert;
+        public Drank drank = new FriesDrank();
+        public Dessert dessert = new Dessert();
         public BesteldGerecht besteldgerecht;
 
         private decimal aantal;
 
-        public Bestelling(Klant klant, BesteldGerecht besteldGerecht, Drank drank, Dessert dessert) {
+       
+
+       public Bestelling() {
+            this.klant = new Klant();
+            this.drank = new FriesDrank();
+            this.dessert = new Dessert();
+            this.besteldgerecht = new BesteldGerecht();
+            this.aantal = 1;
+        }
+
+        public Bestelling(Klant klant, BesteldGerecht besteldGerecht, Drank drank, Dessert dessert , decimal aantal)
+        {
             this.klant = klant;
             this.drank = drank;
             this.dessert = dessert;
             this.besteldgerecht = besteldGerecht;
+            this.aantal = aantal;
         }
+
+        
 
         public decimal Aantal { get => aantal; set => aantal = 1; }
 
         public decimal BerekenBedrag()
         {
-            decimal totaalKost = besteldgerecht.BerekenBedrag() + drank.BerekenBedrag() + dessert.BerekenBedrag();
+            decimal totaalKost = 0;
+            decimal korting = 0;
+            if (drank == null)
+            {
+               return totaalKost = besteldgerecht.BerekenBedrag() + dessert.BerekenBedrag();
+            }
+            else
+            {
+                totaalKost = besteldgerecht.BerekenBedrag() + drank.BerekenBedrag() + dessert.BerekenBedrag();
+                totaalKost = (totaalKost * this.Aantal);
+                korting = (totaalKost * 10 )/ 100;
 
-            return totaalKost;
+                return (totaalKost - korting);
+            }
         }
 
         public override string ToString()
         {
+
+            
             return klant.ToString() + besteldgerecht.ToString() + drank.ToString() + dessert.ToString() +
-                   $" \n Totaal Kost : {BerekenBedrag()}";
+                    $" \nAantal: {this.Aantal} " +$"\nBedrag  van deze bestelling : {BerekenBedrag()} \n";
         }
     }
 }

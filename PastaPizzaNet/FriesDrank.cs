@@ -8,10 +8,17 @@ namespace PastaPizzaNet
 {
     public class FriesDrank : Drank
     {
+        List<Dranks> juisteDranks = new List<Dranks>{ Dranks.cocacola,Dranks.water,Dranks.limonade};
 
+        public FriesDrank() : this(Dranks.limonade , 2) {
+            base.Naam = Dranks.limonade;
+            base.Prijs = 2;
+        }
         public FriesDrank(Dranks naam , decimal prijs):base(naam,prijs)
         {
-            
+            if (!juisteDranks.Contains(base.Naam)){
+                throw new geenJuisteFriesDrankException("Dit drank bestaat niet : kies uit (cocacola, water, limonade) ");
+            }
         }
 
         public override decimal BerekenBedrag()
@@ -21,7 +28,17 @@ namespace PastaPizzaNet
 
         public override string ToString()
         {
-            return base.Naam == Dranks.water || base.Naam == Dranks.limonade || base.Naam == Dranks.cocacola ? $"Drank : {base.Naam} ( prijs {base.Prijs} ) \n" : " verkeerde dranknaam \n";       
+            return $"Drank: {base.Naam} ( {base.Prijs} euro ) \n";
+
+        }
+
+        public class geenJuisteFriesDrankException : Exception
+        {
+
+            public geenJuisteFriesDrankException(string message ) : base(message) {
+
+     
+            }
         }
     }
 }

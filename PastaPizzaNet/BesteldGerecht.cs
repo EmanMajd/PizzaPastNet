@@ -12,6 +12,10 @@ namespace PastaPizzaNet
         public Groote groote;
         public List<Extras> extras;
 
+        public BesteldGerecht() : this(new Pizza(), Groote.Klein , new List<Extras> { })
+        {
+          
+        }
         public BesteldGerecht(Gerecht gerecht , Groote groote , List<Extras> extras) 
         {
             this.gerecht = gerecht;
@@ -20,20 +24,17 @@ namespace PastaPizzaNet
         }
 
 
+
         public string alleExtras(List<Extras> extras)
         {
             if (extras.Count != 0)
             {
-                string extra = "";
-                foreach (Extras ext in extras)
-                {
-                    extra += $"{ext.ToString()} , ";
-                }
-                return extra;
+                
+                return String.Join("  ", extras);
             }
             else
             {
-                return "Zonder extra's";
+                return "";
             }
         }
 
@@ -58,8 +59,9 @@ namespace PastaPizzaNet
         public override string ToString()
         {
             return  this.gerecht.ToString() +
-                    $"Groote : {this.groote}" +
-                    $"\nExtra's : {alleExtras(this.extras)} \n";
+                    $"( {this.groote} )" +
+                    $" extra : {alleExtras(this.extras)} " +
+                    $"( bedrag: {this.BerekenBedrag()} euro) \n";
         }
 
     }
