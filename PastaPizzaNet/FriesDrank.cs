@@ -23,12 +23,26 @@ namespace PastaPizzaNet
 
         public override decimal BerekenBedrag()
         {
-            return 2;
+            if (this == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return this.Prijs;
+            }
         }
 
         public override string ToString()
         {
-            return $"Drank: {base.Naam} ( {base.Prijs} euro ) \n";
+            if (this == null)
+            {
+                return "";
+            }
+            else
+            {
+                return $"Drank: {base.Naam} ( {base.Prijs} euro ) \n";
+            }
 
         }
 

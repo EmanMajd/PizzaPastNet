@@ -58,10 +58,19 @@ namespace PastaPizzaNet
 
         public override string ToString()
         {
-            return  this.gerecht.ToString() +
+            if (this.extras.Count == 0)
+            {
+                return this.gerecht.ToString() +
                     $"( {this.groote} )" +
-                    $" extra : {alleExtras(this.extras)} " +
                     $"( bedrag: {this.BerekenBedrag()} euro) \n";
+            }
+            else
+            {
+                return this.gerecht.ToString() +
+                        $"( {this.groote} )" +
+                        $" extra {alleExtras(this.extras)} " +
+                        $"( bedrag: {this.BerekenBedrag()} euro) \n";
+            }
         }
 
     }

@@ -17,43 +17,84 @@
                     Console.WriteLine(bestelling.ToString(), bestelling.BerekenBedrag());
 
                 }
+                Console.WriteLine("***************************************************************");
 
                 var jans = from bestelling1 in bestellings
                            where bestelling1.klant.Name == "Jan Janssens"
                            select bestelling1;
 
-
-                Console.WriteLine($"Bestelling van Jan Janssens: \n");
+                decimal Jansbedrag = 0;
+                Console.WriteLine($"Bestellings van kalnt Jan Janssens: \n");
                 foreach (var bestelling1 in jans)
                 {
-
+                    Jansbedrag += bestelling1.BerekenBedrag();
                     Console.WriteLine(bestelling1.ToString(), bestelling1.BerekenBedrag());
 
                 }
+                Console.WriteLine($"Het totaal bedraag van alle bestellings van klanh-t Jan Janssens is : {Jansbedrag} euro \n");
+                Console.WriteLine("***************************************************************");
 
                 var groupd = from bestelling2 in bestellings
-                             group bestelling2 by bestelling2.klant.Name != "";
+                             group bestelling2 by bestelling2.klant.Name
+                             into groupdByName
+                             orderby groupdByName.Key descending
+                             select groupdByName;
 
 
-                decimal bedraag = 0;
-                Console.WriteLine("Bekende Klanten");
-
-                foreach (var bekend in groupd)
+                decimal totaalbedraag = 0;
+                
+                foreach (var bekendklant in groupd)
                 {
-                    foreach (var bekendklant in bekend)
+                    if (bekendklant.Key != "")
                     {
-                        if (bekend.Key)
-                        {
-                            Console.WriteLine(bekendklant.ToString(), bekendklant.BerekenBedrag());
-                            bedraag += bekendklant.BerekenBedrag();
-                        }
-
+                        Console.WriteLine("Bekende Klanten \n");
 
                     }
+                    else
+                    {
+                        Console.WriteLine("OnBekende Klanten \n");
+
+                    }
+                    foreach (var n in bekendklant)
+                    {
+                        totaalbedraag += n.BerekenBedrag();
+                        Console.WriteLine(n.ToString());
+                    }
+                    if (bekendklant.Key != "")
+                    {
+                        Console.WriteLine($"Totaal bedraag voor klant {bekendklant.Key} : {totaalbedraag} euro");
+                        totaalbedraag = 0;
+                    }
+                    
+                    Console.WriteLine("***************************************************************");
+
                 }
-                Console.WriteLine("Totaal bedraag voor bekende klanten is : " + bedraag + " Euro");
 
 
+
+                /*
+                Console.WriteLine("Totaal bedraag voor bekende klanten is : " +totaalbedraag + " Euro");
+
+                Console.WriteLine("**********************************************************");
+
+                var onbekende = from bestelling2 in bestellings
+                             group bestelling2 by bestelling2.klant.Name == "";
+
+
+                Console.WriteLine("OnBekende Klanten");
+                decimal onbedraag = 0;
+                foreach (var onbekend in onbekende)
+                {
+                    foreach (var onbekendklant in onbekend)
+                    {
+                        if (onbekend.Key)
+                        {
+                            Console.WriteLine(onbekendklant.ToString(), onbekendklant.BerekenBedrag());
+                            onbedraag += onbekendklant.BerekenBedrag();
+                        }
+
+                    }
+                }*/
 
             }
             catch (FriesDrank.geenJuisteFriesDrankException ex)

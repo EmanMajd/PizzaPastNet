@@ -36,7 +36,7 @@ namespace PastaPizzaNet
 
         public override string ToString()
         {
-            return $"Dessert : {this.Naam} ({this.Prijs} euro) \n";
+            return $"Dessert : {this.Naam} ({this.Prijs} euro)";
         }
     }
 }
