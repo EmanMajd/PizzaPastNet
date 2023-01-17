@@ -12,10 +12,7 @@ namespace PastaPizzaNet
         public Groote groote;
         public List<Extras> extras;
 
-        public BesteldGerecht() : this(new Pizza(), Groote.Klein , new List<Extras> { })
-        {
-          
-        }
+       
         public BesteldGerecht(Gerecht gerecht , Groote groote , List<Extras> extras) 
         {
             this.gerecht = gerecht;

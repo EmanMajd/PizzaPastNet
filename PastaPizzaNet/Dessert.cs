@@ -11,11 +11,7 @@ namespace PastaPizzaNet
         private Desserten naam;
         private decimal prijs;
 
-        public Dessert() : this(Desserten.Tiramisu, 3)
-        {
-         Naam = Desserten.Tiramisu;
-         Prijs = 3;
-        }
+        
 
         public Dessert(Desserten naam, decimal prijs)
         {
@@ -30,13 +26,14 @@ namespace PastaPizzaNet
         public decimal BerekenBedrag()
         {
 
-                return this.prijs;
-           
-        }
+            return this.prijs;
 
+        }
         public override string ToString()
         {
-            return $"Dessert : {this.Naam} ({this.Prijs} euro)";
+           
+                return $"Dessert : {this.Naam} ({this.Prijs} euro)";
+            
         }
     }
 }

@@ -71,37 +71,15 @@
                 }
 
 
-
-                /*
-                Console.WriteLine("Totaal bedraag voor bekende klanten is : " +totaalbedraag + " Euro");
-
-                Console.WriteLine("**********************************************************");
-
-                var onbekende = from bestelling2 in bestellings
-                             group bestelling2 by bestelling2.klant.Name == "";
-
-
-                Console.WriteLine("OnBekende Klanten");
-                decimal onbedraag = 0;
-                foreach (var onbekend in onbekende)
-                {
-                    foreach (var onbekendklant in onbekend)
-                    {
-                        if (onbekend.Key)
-                        {
-                            Console.WriteLine(onbekendklant.ToString(), onbekendklant.BerekenBedrag());
-                            onbedraag += onbekendklant.BerekenBedrag();
-                        }
-
-                    }
-                }*/
-
             }
             catch (FriesDrank.geenJuisteFriesDrankException ex)
             {
                 Console.WriteLine(ex.Message);
             }
             catch (WarmeDrank.geenJuisteWarmeDrankException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
